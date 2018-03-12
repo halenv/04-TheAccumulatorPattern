@@ -354,7 +354,7 @@ def run_test_sum_unit_fractions_from():
     answer = sum_unit_fractions_from(2, 3)
     print('Test 3 expected:', expected)
     print('       actual:  ', answer)
-    
+
 
 def sum_unit_fractions_from(m, n):
     """
@@ -369,7 +369,7 @@ def sum_unit_fractions_from(m, n):
       -- sum_unit_fractions_from(10, 9000)  returns about  6.853
     """
     # ------------------------------------------------------------------
-    # TODO: 9. Implement and test this function.
+    # DONE: 9. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -377,8 +377,15 @@ def sum_unit_fractions_from(m, n):
     #   of the RANGE expression, if you happen to know them.
     # ------------------------------------------------------------------
 
+    sum_fraction = 0
+    for k in range((n - m) + 1):
+        sum_fraction = sum_fraction + 1/(m + k)
+
+    return sum_fraction
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
