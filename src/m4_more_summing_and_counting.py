@@ -303,7 +303,7 @@ def count_cosines_from(m, n, x):
       -- count_cosines_from(4, 8, -0.5)  returns  4
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -317,6 +317,7 @@ def count_cosines_from(m, n, x):
             count = count + 1
 
     return count
+
 
 def run_test_sum_unit_fractions_from():
     """ Tests the   sum_unit_fractions_from   function. """
@@ -342,6 +343,18 @@ def run_test_sum_unit_fractions_from():
     # Below this comment, add 2 more test cases of your own choosing.
     # ------------------------------------------------------------------
 
+    # Test 2: 10, 9000
+    expected = 6.853
+    answer = sum_unit_fractions_from(10, 9000)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 3: 2, 3
+    expected = 5/6
+    answer = sum_unit_fractions_from(2, 3)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', answer)
+    
 
 def sum_unit_fractions_from(m, n):
     """
