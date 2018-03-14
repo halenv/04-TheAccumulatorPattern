@@ -219,7 +219,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -242,7 +242,8 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     first_left_circle.fill_color = rectangle.fill_color
     first_left_circle.attach_to(window)
     for k in range(m):
-        # left_circle_center = rg.Point((center_rect.x - (rectangle.get_width() / 2) - (radius_left * (k + 1))), center_rect.y)
+        # left_circle_center = rg.Point((center_rect.x - (rectangle.get_width() / 2) - (radius_left * (k + 1))),
+        # center_rect.y)
         # circle = rg.Circle(left_circle_center, radius_left)
         # circle.attach_to(window)
         new_center = rg.Point(first_l_center.x - (2 * radius_left * (k + 1)), center_rect.y)
@@ -355,6 +356,30 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+
+    rectangle1.attach_to(window)
+    height1 = rectangle1.get_height()
+    width1 = rectangle1.get_width()
+    rectangle2.attach_to(window)
+    center_rect1 = rg.Point(rectangle1.get_center().x, rectangle1.get_center().y)
+    center_rect2 = rg.Point(rectangle2.get_center().x, rectangle2.get_center().y)
+    bottom_left = rg.Point(center_rect1.x - (width1 / 2), center_rect1.y + (height1 / 2))
+    bottom_right = rg.Point(center_rect2.x - (width1 / 2), center_rect2.y + (height1 / 2))
+    first_line = rg.Line(center_rect1, center_rect2)
+    first_line.color = rectangle1.outline_color
+    first_line.attach_to(window)
+
+    for k in range(n):
+        new_start = rg.Point(bottom_left.x - (k * (width1 / 2)), bottom_left.y + (k * (height1 / 2)))
+        new_end = rg.Point(bottom_right.x - (k * (width1 / 2)), bottom_right.y + (k * (height1 / 2)))
+        line = rg.Line(new_start, new_end)
+        if k % 2 == 0:
+            line.color = rectangle2.outline_color
+        else:
+            line.color = rectangle1.outline_color
+        line.thickness = rectangle2.outline_thickness
+        line.attach_to(window)
+    window.render()
 
 
 # ----------------------------------------------------------------------
