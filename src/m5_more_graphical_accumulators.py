@@ -155,11 +155,13 @@ def run_test_draw_circles_from_rectangle():
     # Test 1:
     rectangle = rg.Rectangle(rg.Point(300, 150), rg.Point(340, 210))
     rectangle.fill_color = 'pink3'
+    rectangle.outline_color = 'purple'
     draw_circles_from_rectangle(4, 5, rectangle, window1)
 
     # Test 2:
     rectangle = rg.Rectangle(rg.Point(520, 250), rg.Point(545, 350))
     rectangle.fill_color = 'midnight blue'
+    rectangle.outline_color = 'red'
     draw_circles_from_rectangle(8, 2, rectangle, window1)
 
     window1.close_on_mouse_click()
@@ -170,7 +172,7 @@ def run_test_draw_circles_from_rectangle():
 
     # Test 3:
     rectangle = rg.Rectangle(rg.Point(150, 450), rg.Point(155, 465))
-    draw_circles_from_rectangle(3, 8, rectangle, window2)
+    draw_circles_from_rectangle(10, 58, rectangle, window2)
     rectangle.fill_color = 'orange'
 
     window2.close_on_mouse_click()
@@ -234,16 +236,30 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     center_rect = rg.Point(rectangle.get_center().x, rectangle.get_center().y)
 
     radius_left = rectangle.get_height() / 2
+    first_l_center = rg.Point(center_rect.x - (rectangle.get_width() / 2) - radius_left, center_rect.y)
+    first_left_circle = rg.Circle(first_l_center, radius_left)
+    first_left_circle.fill_color = rectangle.fill_color
+    first_left_circle.attach_to(window)
     for k in range(m):
-        left_circle_center = rg.Point(center_rect.x - (rectangle.get_height() * (k + 1) - (rectangle.get_width() / 2), center_rect.y))
-        circle = rg.Circle(left_circle_center, radius_left)
+        # left_circle_center = rg.Point((center_rect.x - (rectangle.get_width() / 2) - (radius_left * (k + 1))), center_rect.y)
+        # circle = rg.Circle(left_circle_center, radius_left)
+        # circle.attach_to(window)
+        new_center = rg.Point(first_l_center.x - (2 * radius_left * (k + 1)), center_rect.y)
+        circle = rg.Circle(new_center, radius_left)
+        circle.fill_color = rectangle.fill_color
         circle.attach_to(window)
 
-
     radius_upper = rectangle.get_width() / 2
+    first_r_center = rg.Point(center_rect.x, center_rect.y - (rectangle.get_height() / 2) - radius_upper)
+    first_upper_circle = rg.Circle(first_r_center, radius_upper)
+    first_upper_circle.outline_color = rectangle.outline_color
+    first_upper_circle.attach_to(window)
     for k in range(n):
-        upper_circle_center = rg.Point(center_rect.x, center_rect.y - (rectangle.get_width() * (k + 1)))
-        circle = rg.Circle(upper_circle_center, radius_upper)
+        # upper_circle_center = rg.Point(center_rect.x, center_rect.y - (rectangle.get_width() * (k + 1)))
+        # circle = rg.Circle(upper_circle_center, radius_upper)
+        new_center = rg.Point(center_rect.x, first_r_center.y - (2 * radius_upper * (k + 1)))
+        circle = rg.Circle(new_center, radius_upper)
+        circle.outline_color = rectangle.outline_color
         circle.attach_to(window)
     window.render()
 
