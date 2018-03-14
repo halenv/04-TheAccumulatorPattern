@@ -171,9 +171,10 @@ def run_test_draw_circles_from_rectangle():
     window2 = rg.RoseWindow(200, 500, title)
 
     # Test 3:
-    rectangle = rg.Rectangle(rg.Point(150, 450), rg.Point(155, 465))
-    draw_circles_from_rectangle(10, 58, rectangle, window2)
+    rectangle = rg.Rectangle(rg.Point(150, 450), rg.Point(170, 490))
     rectangle.fill_color = 'orange'
+    rectangle.outline_color = 'magenta3'
+    draw_circles_from_rectangle(10, 58, rectangle, window2)
 
     window2.close_on_mouse_click()
 
